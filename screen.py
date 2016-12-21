@@ -7,9 +7,10 @@ import time
 
 
 class VideoCamera:
-    def __init__(self):
+    def __init__(self, img_quality = 100):
         self.img_width = gtk.gdk.screen_width()
         self.img_height = gtk.gdk.screen_height()
+        self.img_quality = img_quality
 
     def get_frame(self):
         try:
@@ -47,14 +48,14 @@ class VideoCamera:
         # We are using Motion JPEG, but OpenCV defaults to capture raw images,
         # so we must encode it into JPEG in order to correctly display the
         # video stream.
-        ret, jpeg = cv2.imencode('.jpg', image)
+        ret, jpeg = cv2.imencode('.jpg', image, [cv2.IMWRITE_JPEG_QUALITY, self.img_quality])
         return jpeg.tobytes()
 
 
 #Use for speed test
 if __name__ == '__main__':
     n_frames = 100
-    cam = VideoCamera()
+    cam = VideoCamera(5)
     start = time.time()
     for i in range(0,n_frames):
         cam.get_frame()
