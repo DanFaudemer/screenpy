@@ -1,10 +1,24 @@
 
 <html>
   <head>
+
     <title>Video Streaming Demonstration</title>
   </head>
   <body>
     <h1>Video Streaming Demonstration</h1>
     <img id="bg" src="{{ url_for('video_feed') }}">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('#bg').click(function(e) {
+        var offset = $(this).offset();
+        var x = e.pageX - offset.left;
+        var y = e.pageY - offset.top;
+        $.post( "/move", { posx: x, posy: y } );
+
+      });
+});
+    </script>
   </body>
 </html>
