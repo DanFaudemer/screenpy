@@ -1,3 +1,22 @@
 # Screen sharing app
 
-Stream your desktop with a simple python script.
+Stream your desktop with a simple python script through a web interface.
+Based on: (github link ?)
+
+
+# Requirements
+
+This app required the following package:
+ * gtk
+ * open-cv2
+ * numpy (> 1.11.3)
+ * Image
+
+# Run
+```
+python main.py
+```
+And connect go to
+```
+http://0.0.0.0:5000
+```
