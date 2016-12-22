@@ -34,16 +34,27 @@ def move():
         pass
     return "success"
 
-def move():
+@app.route('/press', methods=['POST'])
+def press():
     posx=int(float(request.form['posx']))
     posy=int(float(request.form['posy']))
     try:
-        m.move(posx,posy)
+        m.press(posx,posy)
 
     except:
         pass
     return "success"
 
+@app.route('/release', methods=['POST'])
+def release():
+    posx=int(float(request.form['posx']))
+    posy=int(float(request.form['posy']))
+    try:
+        m.release(posx,posy)
+
+    except:
+        pass
+    return "success"
 
 
 if __name__ == '__main__':

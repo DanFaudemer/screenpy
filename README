@@ -1,6 +1,7 @@
 # Screen sharing app
 
 Stream your desktop with a simple python script through a web interface.
+Through this web interface you can control the mouse.
 Based on: (github link ?)
 
 
@@ -13,8 +14,10 @@ This app required the following package:
  * Image
 
 # Run
+
+To run this app you need to use WSGI HTTP Server. I used gunicorn:
 ```
-python main.py
+ gunicorn -w 4 main:app -b 0.0.0.0:4000
 ```
 And connect go to
 ```

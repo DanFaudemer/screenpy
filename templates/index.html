@@ -17,7 +17,41 @@
         var y = e.pageY - offset.top;
         $.post( "/move", { posx: x, posy: y });
       });
+
+      $('#bg').mousedown(function(e) {
+         e.preventDefault();
+        var offset = $(this).offset();
+        var x = e.pageX - offset.left;
+        var y = e.pageY - offset.top;
+        $.post( "/press", { posx: x, posy: y });
+      });
+
+      $('#bg').mouseup(function(e) {
+         e.preventDefault();
+        var offset = $(this).offset();
+        var x = e.pageX - offset.left;
+        var y = e.pageY - offset.top;
+        $.post( "/release", { posx: x, posy: y });
+      });
+      motionjpeg("#bg");
     });
+
+    function motionjpeg(id) {
+    var image = $(id), src;
+
+    if (!image.length) return;
+
+    src = image.attr("src");
+    if (src.indexOf("?") < 0) {
+        image.attr("src", src + "?"); // must have querystring
+    }
+
+    image.on("load", function() {
+        // this cause the load event to be called "recursively"
+        this.src = this.src.replace(/\?[^\n]*$/, "?") +
+            (new Date()).getTime(); // 'this' refers to the image
+    });
+}
     </script>
   </body>
 </html>
