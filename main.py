@@ -5,6 +5,7 @@ from screen import VideoCamera
 from pymouse import PyMouse
 
 app = Flask(__name__)
+m = PyMouse()
 
 @app.route('/')
 def index():
@@ -24,12 +25,26 @@ def video_feed():
 
 @app.route('/move', methods=['POST'])
 def move():
-    posx=int(request.form['posx'])
-    posy=int(request.form['posy'])
-    m.move(posx,posy)
+    posx=int(float(request.form['posx']))
+    posy=int(float(request.form['posy']))
+    try:
+        m.move(posx,posy)
+
+    except:
+        pass
+    return "success"
+
+def move():
+    posx=int(float(request.form['posx']))
+    posy=int(float(request.form['posy']))
+    try:
+        m.move(posx,posy)
+
+    except:
+        pass
     return "success"
 
 
+
 if __name__ == '__main__':
-    m = PyMouse()
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', threaded=True)

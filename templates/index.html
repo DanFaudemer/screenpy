@@ -11,14 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
     $(document).ready(function() {
-      $('#bg').click(function(e) {
+      $('#bg').mousemove(function(e) {
         var offset = $(this).offset();
         var x = e.pageX - offset.left;
         var y = e.pageY - offset.top;
-        $.post( "/move", { posx: x, posy: y } );
-
+        $.post( "/move", { posx: x, posy: y });
       });
-});
+    });
     </script>
   </body>
 </html>
